@@ -4,14 +4,14 @@ import Card from "./Card";
 
 
 /** Carousel: displays images and arrows to navigate through them
- * 
+ *
  * Props:
  * - photos: array of {src, caption} objects
  * - title: string describing the collection of images
- * 
+ *
  * State:
  * - currCardIdx: integer for current card index
- * 
+ *
  * App --> Carousel --> Card
  */
  function Carousel({ photos, title }) {
@@ -21,9 +21,11 @@ import Card from "./Card";
   const total = photos.length;
 
   //Increments currCardIdx state by 1
+  //TODO: loop
   function goForward() {
     setCurrCardIdx(currCardIdx + 1);
   }
+  //TODO: go backward
 
   return (
     <div className="Carousel">
