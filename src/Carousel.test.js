@@ -1,6 +1,8 @@
 import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 import TEST_IMAGES from "./_testCommon.js";
+const RIGHT_ARROW = '.bi-arrow-right-circle'
+const LEFT_ARROW = '.bi-arrow-left-circle'
 
 it("renders without crashing", function () {
   render(
@@ -37,7 +39,7 @@ it("works when you click on the right arrow", function () {
   ).not.toBeInTheDocument();
 
   // move forward in the carousel
-  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  const rightArrow = container.querySelector(RIGHT_ARROW);
   fireEvent.click(rightArrow);
 
   // expect the second image to show, but not the first
@@ -56,7 +58,7 @@ it("works when you click on the left arrow", function () {
       title="images for testing"
     />
   );
-  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  const rightArrow = container.querySelector(RIGHT_ARROW);
   fireEvent.click(rightArrow);
 
   // expect the second image to show, but not the first
@@ -68,7 +70,7 @@ it("works when you click on the left arrow", function () {
   ).not.toBeInTheDocument();
 
   // move forward in the carousel
-  const leftArrow = container.querySelector(".bi-arrow-left-circle");
+  const leftArrow = container.querySelector(LEFT_ARROW);
   fireEvent.click(leftArrow);
 
   // expect the first image to show, but not the second
@@ -81,7 +83,7 @@ it("works when you click on the left arrow", function () {
 });
 
 it("hides left arrow when showing first image", function () {
-  const { container, debug } = render(
+  const { container } = render(
     <Carousel
       photos={TEST_IMAGES}
       title="images for testing"
@@ -89,23 +91,24 @@ it("hides left arrow when showing first image", function () {
 
   // expect left arrow to be hidden
   expect(
-    container.querySelector('.bi-arrow-left-circle')
+    container.querySelector(LEFT_ARROW)
   ).not.toBeInTheDocument();
 });
 
 it("hides right arrow when showing first image", function () {
-  const { container, debug } = render(
+  const { container } = render(
     <Carousel
       photos={TEST_IMAGES}
       title="images for testing"
     />);
 
-  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+  const rightArrow = container.querySelector(RIGHT_ARROW);
   fireEvent.click(rightArrow);
   fireEvent.click(rightArrow);
 
   // expect right arrow to be hidden
+  //TODO: make global constants
   expect(
-    container.querySelector('.bi-arrow-right-circle')
+    container.querySelector(RIGHT_ARROW)
   ).not.toBeInTheDocument();
 });
